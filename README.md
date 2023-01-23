@@ -1,4 +1,4 @@
-#Production wont work because i am too cheap to buy a API key
+#Production wont work because i am too cheap to buy an API key
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
