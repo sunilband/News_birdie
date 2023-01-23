@@ -1,8 +1,9 @@
 import {React,useState} from 'react'
 import Navbar from './components/Navbar'
 import News from './components/News'
-
 import About from './components/About'
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+
 
 
 
@@ -10,10 +11,8 @@ import About from './components/About'
 
 function App() {
 
-  const [mode,changeMode]=useState("light")
+  const [mode,changeMode]=useState("dark")
 
-  const[flag,changeFlag]=useState(true)
-  console.log(flag,"check")
   
 
   const toggleMode=()=>{
@@ -25,36 +24,33 @@ function App() {
     }
   }
   
-  const flagAbout=()=>{
-    changeFlag(false)
-  }
-  const flagHome=()=>{
-    changeFlag(true)
-  }
+  
   
  
 
   return (
-    
+    <Router>
 
     <div className={`bg-${mode}`} style={{height:"100%"}} >
-    <Navbar mode={mode} toggle={toggleMode} flagAbout={flagAbout} flagHome={flagHome}/>
-    
-   {flag && <News mode={mode}/>} 
-   {!flag &&<About mode={mode} style={{height:"100vh"}}/>}
-    
-    {/* <Routes>
-      <Route path="/" element={<News mode={mode}/>}>
-      </Route>
-      <Route path="/about" element={<About mode={mode}/>}>
-      </Route>
-    </Routes> */}
+    <Navbar mode={mode} toggle={toggleMode}/>
+   
     
     
-    
-    {!flag && <div style={{height:"100vh",color:"white"}}><pre ></pre></div>}
-  </div>
+   
+   <Routes>
+    <Route path='/' element={<News mode={mode}/>}>
+    </Route>
+    <Route path='/about' element={<div><About mode={mode} style={{height:"100vh"}} /><div style={{height:"100vh",color:"white"}}><pre ></pre></div></div>}>
+    </Route>
 
+    </Routes> 
+   
+    
+    
+    
+    
+  </div>
+  </Router>
   
   )
 }
