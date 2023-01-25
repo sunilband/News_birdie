@@ -236,12 +236,12 @@ function News(props) {
             })}
 
           {/* previous and next buttons */}
-          {source.everything.slice(36, 41) !== "india" && (
+          
             <div className="d-flex justify-content-center m-4 align-self-end">
               <button
                 type="button"
                 class={`btn btn-${
-                  props.mode === "dark" ? "outline-info" : "info"
+                  props.mode === "dark" ? "outline-info" : "primary"
                 } h-75 w-25`}
                 onClick={page === 1 ? null : previous}
               >
@@ -258,7 +258,7 @@ function News(props) {
               <button
                 type="button"
                 class={`btn btn-${
-                  props.mode === "dark" ? "outline-info" : "info"
+                  props.mode === "dark" ? "outline-info" : "primary"
                 } h-75 w-25`}
                 onClick={next}
               >
@@ -266,7 +266,7 @@ function News(props) {
                 <strong>Next &raquo;</strong>
               </button>
             </div>
-          )}
+          
         </div>
       </div>
     </div>
