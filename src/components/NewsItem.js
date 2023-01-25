@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function NewsItem(props) {
   let descTrim = undefined;
   let initialDesc = props.description;
@@ -10,12 +12,30 @@ function NewsItem(props) {
   };
   props.description && desc();
 
+
+
+  const [bg,setBg]=useState({width: "18rem", height: "60vh"})
+  
+  const setBackgroundEnter=()=>{
+    setBg({width: "18rem", height: "60vh",transform: "scale(1.07)",
+    boxShadow: "0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06)"})
+  }
+  const setBackgroundLeave=()=>{
+    setBg({width: "18rem", height: "60vh"})
+  }
+
+
   return (
     <div
       className={`card mx-2 my-2  px-1 py-1 h-100 border border-${
         props.mode === "dark" ? "1" : "3"
       }`}
-      style={{ width: "18rem", height: "60vh" }}
+      style={bg}
+      onMouseEnter={setBackgroundEnter}
+      onMouseLeave={setBackgroundLeave}
+
+    
+
       data-bs-theme={props.mode === "light" ? "light" : "dark"}
     >
       <img src={props.imageurl} className="card-img-top" alt="..." />
