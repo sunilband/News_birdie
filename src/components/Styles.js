@@ -19,5 +19,5 @@ height: 5vh;
 font-size: 2.5rem;
 z-index: 1;
 cursor: pointer;
-color: red;
+color: #e4003c00;
 `

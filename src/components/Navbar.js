@@ -19,7 +19,7 @@ function Navbar(props) {
 
   <ul className="navbar-nav me-auto mb-2 mb-lg-0 d-flex flex-row">
     <li className="nav-item mx-2">
-      <Link to="/"  className={`nav-link active text-${props.mode==="dark"?"light":"light"}`}  onClick={props.flagHome}>Home</Link>
+      <Link to="/home"  className={`nav-link active text-${props.mode==="dark"?"light":"light"}`}  onClick={props.flagHome}>Home</Link>
     </li>
 
   

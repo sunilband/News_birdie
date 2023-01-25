@@ -3,6 +3,7 @@ import NewsItem from "./NewsItem";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 import Carousel from "react-bootstrap/Carousel";
+import Loader from "./Loader";
 
 function News(props) {
   // keys
@@ -12,29 +13,42 @@ function News(props) {
   // 293482aa54024114a7fba36d4be6cd33
  
   const [art, setArt] = useState([]);
+  const [loading,setLoading]=useState(false)
   const [artTop, setArtTop] = useState([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [source, setSource] = useState({
-    everything: `https://newsapi.org/v2/everything?q=india&apiKey=e5b95c449b6c41959b3aae975f0be834&page=${page}`,
-    top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=e5b95c449b6c41959b3aae975f0be834&page=1`,
+    everything: `https://newsapi.org/v2/everything?q=india&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=${page}`,
+    top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=1`,
   });
   const [results, setResults] = useState({ number: "12" });
 
+
+
   useEffect(() => {
+   
     const getArticlesEverything = async () => {
       const resEverything = await Axios.get(source.everything);
       setArt(resEverything.data.articles);
+      console.log(resEverything)
+      setLoading(true)  
     };
     getArticlesEverything();
+    setLoading(false)
+    
   }, [source, props.flag, results, page]);
 
   useEffect(() => {
+    
     const getArticlesTop = async () => {
       const resTop = await Axios.get(source.top);
       setArtTop(resTop.data.articles);
-    };
+      
+    };setLoading(true)
     getArticlesTop();
+    setLoading(false)
+    
+    
   }, [source, props.flag, results, page]);
 
   const searchSetter = (e) => {
@@ -42,96 +56,110 @@ function News(props) {
   };
 
   const fillSearch = (e) => {
+    if(search!=="")
     setSource({
-      everything: `https://newsapi.org/v2/everything?q=${search}&apiKey=e5b95c449b6c41959b3aae975f0be834`,
-      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=e5b95c449b6c41959b3aae975f0be834`,
+      everything: `https://newsapi.org/v2/everything?q=${search}&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
+      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
     });
-    document.getElementById("id").scrollIntoView();
+    setPage(1)
+    document.getElementById("id").scrollIntoView(true);
+    
   };
 
   const previous = () => {
+    
     if (page !== 1) {
       setPage(page - 1);
       setSource({
         everything: `https://newsapi.org/v2/everything?q=${
           source.everything.slice(36, 41) !== "india" ? search : "india"
-        }&apiKey=e5b95c449b6c41959b3aae975f0be834&page=${page - 1}`,
-        top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=e5b95c449b6c41959b3aae975f0be834`,
+        }&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=${page - 1}`,
+        top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
       });
+    
     }
-    console.log(page, source);
-
-    console.log(page, source);
+   
   };
   const next = () => {
+   
     setSource({
       everything: `https://newsapi.org/v2/everything?q=${
         source.everything.slice(36, 41) !== "india" ? search : "india"
-      }&apiKey=e5b95c449b6c41959b3aae975f0be834&page=${page + 1}`,
-      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=e5b95c449b6c41959b3aae975f0be834`,
+      }&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=${page + 1}`,
+      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
     });
     setPage(page + 1);
-    console.log(page, source);
+    console.log(source)
+    
+   
   };
 
   const changeRes = (e) => {
     setResults({ number: e.target.value });
+
   };
+
+  
+  
 
   return (
     <div
       className="container-fluid "
     >
-  
-      <div
-        className={`py-2 my-3 border-${
-          props.mode === "dark" ? "dark" : "secondary"
-        } `}
-      >
-        <Carousel fade >
-          {artTop
-            .filter(
-              (x) =>
-                x.description !== null &&
-                x.title !== null &&
-                x.urlToImage !== null
-            )
-            .map((element) => {
-              if (artTop.indexOf(element) <= 6) {
-                return (
-                  <Carousel.Item style={{ height: "70vh"}}>
-                    <img
-                      className="d-block w-100"
-                      src={element.urlToImage}
-                      alt="First slide"
-                      style={{ height: "100%", objectFit: "cover" }}
-                    />
-                    <Carousel.Caption>
-                      <h3
-                        className="text-light"
-                        style={{
-                          textShadow: "0 0 5px black,0 0 5px #12102000",
-                        }}
-                      >
-                        {element.title}
-                      </h3>
-                      <p
-                        className="text-light"
-                        style={{
-                          textShadow: "0 0 5px black,0 0 5px #12102000",
-                        }}
-                      >
-                        {element.description}
-                      </p>
-                    </Carousel.Caption>
-                  </Carousel.Item>
-                );
-              } else {
-                return null;
-              }
-            })}
-        </Carousel>
-      </div>
+   
+  { <div
+    className={`py-2 my-3 border-${
+      props.mode === "dark" ? "dark" : "secondary"
+    } `}
+  >
+    <Carousel fade >
+      {artTop
+        .filter(
+          (x) =>
+            x.description !== null &&
+            x.title !== null &&
+            x.urlToImage !== null
+        )
+        .map((element) => {
+          if (artTop.indexOf(element) <= 6) {
+            return (
+              <Carousel.Item style={{ height: "70vh"}}>
+                <img
+                  className="d-block w-100"
+                  src={element.urlToImage}
+                  alt="First slide"
+                  style={{ height: "100%", objectFit: "cover"}}
+                />
+                <Carousel.Caption>
+                  <h3
+                    className="text-light"
+                    style={{
+                      textShadow: "0 0 5px black,0 0 5px #12102000",
+                    }}
+                  >
+                    {element.title}
+                  </h3>
+                  <p
+                    className="text-light"
+                    style={{
+                      textShadow: "0 0 5px black,0 0 5px #12102000",
+                    }}
+                  >
+                    {element.description}
+                  </p>
+                </Carousel.Caption>
+              </Carousel.Item>
+            );
+          } else {
+            return null;
+          }
+        })}
+    </Carousel>
+  </div>}
+
+
+      
+
 
       <div className="d-flex ">
         <p
@@ -186,7 +214,6 @@ function News(props) {
         <div className="container-fluid row d-flex justify-content-around my-3" >
           {source.everything.slice(36, 41) !== "india" && (
             <h1
-              id="id"
               className={`text-${
                 props.mode === "dark" ? "danger" : "dark"
               } text-center my-4 `}
@@ -197,7 +224,9 @@ function News(props) {
 
           {/* results cards */}
 
-          {art
+          {!loading && <Loader/>}
+
+          {loading && art
             .filter(
               (x) =>
                 x.description !== null &&
@@ -224,7 +253,7 @@ function News(props) {
 
           {/* previous and next buttons */}
           
-            <div className="d-flex justify-content-center m-4 align-self-end">
+            {loading && <div className="d-flex justify-content-center m-4 align-self-end">
               <button
                 type="button"
                 class={`btn btn-${
@@ -252,7 +281,8 @@ function News(props) {
                 {" "}
                 <strong>Next &raquo;</strong>
               </button>
-            </div>
+              </div>}
+            
           
         </div>
       </div>

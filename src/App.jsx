@@ -4,6 +4,7 @@ import News from './components/News'
 import About from './components/About'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import ScrollButton from './components/ScrollButton'
+import Loader from './components/Loader'
 
 
 
@@ -34,14 +35,16 @@ function App() {
 
     <div className={`bg-${mode}`} style={{height:"100%"}} >
     <Navbar mode={mode} toggle={toggleMode}/>
-   
+    
     
     
    
    <Routes>
-    <Route path='/' element={<News mode={mode}/>}>
+    <Route exact path='/home' element={<News mode={mode}/>}>
     </Route>
-    <Route path='/about' element={<div><About mode={mode} style={{height:"100vh"}} /><div style={{height:"100vh",color:"white"}}><pre ></pre></div></div>}>
+    <Route exact path='/' element={<News mode={mode}/>}>
+    </Route>
+    <Route exact path='/about' element={<div><About mode={mode} style={{height:"100vh"}} /><div style={{height:"100vh",color:"white"}}><pre ></pre></div></div>}>
     </Route>
 
     </Routes> 

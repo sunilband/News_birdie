@@ -40,6 +40,7 @@ function NewsItem(props) {
     >
       <img src={props.imageurl} className="card-img-top" alt="..." />
       <div className="card-body ">
+        
         <h5
           className={`card-title text-${
             props.mode === "dark" ? "light" : "dark"
@@ -54,9 +55,13 @@ function NewsItem(props) {
           } `}
           style={{ textOverflow: "ellipsis" }}
         >
+          
           {descTrim}
         </p>
+        
+        
       </div>
+      
       <a
         href={props.url}
         className="btn btn-sm btn-danger  py-1"
