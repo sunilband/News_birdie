@@ -12,7 +12,7 @@ import ScrollButton from './components/ScrollButton'
 
 function App() {
 
-  const [mode,changeMode]=useState("dark")
+  const [mode,changeMode]=useState("light")
 
   
 

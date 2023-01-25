@@ -8,12 +8,12 @@ import React from 'react'
 
 function Navbar(props) {
   return (
-    <div>
+    
         
 
-    <nav className={`navbar navbar-expand-lg bg-${props.mode==="dark"?"dark":"dark"} border-dark border-bottom`} style={{height:"10vh"}}>
-     <div className="container-fluid">
-    <Link className="navbar-brand" to="/"><strong className={`text-${props.mode==="dark"?"light":"light"}`}>News Birdie <img src={logo} height={64} alt="not available"/> </strong></Link>
+    <nav className={`navbar navbar-expand-lg bg-dark border-dark border-bottom`} style={{height:"10vh"}}>
+     <div className="container-fluid ">
+    <Link className="navbar-brand " to="/"><strong className={`text-${props.mode==="dark"?"light":"light"}`}>News Birdie <img src={logo} height={64} alt="not available"/> </strong></Link>
 
 
 
@@ -44,7 +44,7 @@ function Navbar(props) {
 
 
 
-  </div>
+  
   )
 }
 

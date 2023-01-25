@@ -19,7 +19,7 @@ function News(props) {
     everything: `https://newsapi.org/v2/everything?q=india&apiKey=e5b95c449b6c41959b3aae975f0be834&page=${page}`,
     top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=e5b95c449b6c41959b3aae975f0be834&page=1`,
   });
-  const [results, setResults] = useState({ number: "8" });
+  const [results, setResults] = useState({ number: "12" });
 
   useEffect(() => {
     const getArticlesEverything = async () => {
@@ -81,27 +81,14 @@ function News(props) {
   return (
     <div
       className="container-fluid "
-      style={{
-        backgroundColor: props.mode === "dark" ? "#06081a9e" : "#f8f9fa00",
-      }}
     >
-      <h1
-        className={`text-center me-auto text-${
-          props.mode === "dark" ? "light" : "dark"
-        }`}
-        style={{ padding: "5vh 0 2vh 0" }}
-      >
-        {" "}
-        <strong>Top Headlines</strong>{" "}
-      </h1>
-
-      {/* carosoul */}
+  
       <div
-        className={`p-3 my-3 rounded-4 border border-${
+        className={`py-2 my-3 border-${
           props.mode === "dark" ? "dark" : "secondary"
         } `}
       >
-        <Carousel fade>
+        <Carousel fade >
           {artTop
             .filter(
               (x) =>
@@ -112,7 +99,7 @@ function News(props) {
             .map((element) => {
               if (artTop.indexOf(element) <= 6) {
                 return (
-                  <Carousel.Item style={{ height: "55vh" }}>
+                  <Carousel.Item style={{ height: "70vh"}}>
                     <img
                       className="d-block w-100"
                       src={element.urlToImage}
@@ -146,7 +133,7 @@ function News(props) {
         </Carousel>
       </div>
 
-      <div className="d-flex py-4">
+      <div className="d-flex ">
         <p
           className={`mx-2 my-2  h-50 align-self-center me-auto text-${
             props.mode === "dark" ? "light" : "dark"
@@ -195,8 +182,8 @@ function News(props) {
         </button>
       </div>
 
-      <div className="d-flex justify-content-center">
-        <div className="container row d-flex justify-content-around my-3">
+      <div className="d-flex justify-content-center" >
+        <div className="container-fluid row d-flex justify-content-around my-3" >
           {source.everything.slice(36, 41) !== "india" && (
             <h1
               id="id"
@@ -220,7 +207,7 @@ function News(props) {
             .map((element) => {
               if (art.indexOf(element) <= results.number - 1) {
                 return (
-                  <div className="col-md-3 col-l-3 col-sm-6 my-2" id="id">
+                  <div className="col-md-2 row-md-3 col-sm-4 col-xs-6 my-2 d-flex justify-content-center" id="id"> 
                     <NewsItem
                       title={element.title}
                       description={element.description}
