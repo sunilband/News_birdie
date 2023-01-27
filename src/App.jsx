@@ -4,7 +4,7 @@ import News from './components/News'
 import About from './components/About'
 import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
 import ScrollButton from './components/ScrollButton'
-import Loader from './components/Loader'
+
 
 
 

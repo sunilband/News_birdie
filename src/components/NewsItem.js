@@ -27,7 +27,7 @@ function NewsItem(props) {
 
   return (
     <div
-      className={`card mx-2 my-2  px-1 py-1 h-100 border border-${
+      className={`card mx-2 my-2 px-1 py-1 h-100 border border-${
         props.mode === "dark" ? "1" : "3"
       }`}
       style={bg}

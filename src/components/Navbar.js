@@ -11,7 +11,7 @@ function Navbar(props) {
     
         
 
-    <nav className={`navbar navbar-expand-lg bg-dark border-dark border-bottom`} style={{height:"10vh"}}>
+    <nav className={`navbar fixed-top navbar-expand-s bg-dark border-dark border-bottom`} >
      <div className="container-fluid ">
     <Link className="navbar-brand " to="/"><strong className={`text-${props.mode==="dark"?"light":"light"}`}>News Birdie <img src={logo} height={64} alt="not available"/> </strong></Link>
 
@@ -33,7 +33,7 @@ function Navbar(props) {
 
   <div className="form-check form-switch">
   <input className="form-check-input"  onClick={props.toggle} type="checkbox" role="switch" id="flexSwitchCheckChecked"/>
-  <label className={`form-check-label text-${props.mode==="dark"?"light":"light"}`} htmlfor="flexSwitchCheckChecked">{props.mode==="dark"?"Dark Mode":"Light Mode"}</label>
+  <label className={`form-check-label text-${props.mode==="dark"?"light":"light"}`} htmlFor="flexSwitchCheckChecked">{props.mode==="dark"?"Dark Mode":"Light Mode"}</label>
 </div>
   
   

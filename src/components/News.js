@@ -11,6 +11,7 @@ function News(props) {
   // b17a718eef2f40f78edd12ea18ea71e5
   // f24acf7a501b4ccdafcb7677f925e7fa
   // 293482aa54024114a7fba36d4be6cd33
+  // 6ca394a356504188a8aea3a7cdb28ee5
  
   const [art, setArt] = useState([]);
   const [loading,setLoading]=useState(false)
@@ -18,8 +19,8 @@ function News(props) {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [source, setSource] = useState({
-    everything: `https://newsapi.org/v2/everything?q=india&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=${page}`,
-    top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=1`,
+    everything: `https://newsapi.org/v2/everything?q=india&apiKey=6ca394a356504188a8aea3a7cdb28ee5&page=${page}`,
+    top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=6ca394a356504188a8aea3a7cdb28ee5&page=1`,
   });
   const [results, setResults] = useState({ number: "12" });
 
@@ -58,8 +59,8 @@ function News(props) {
   const fillSearch = (e) => {
     if(search!=="")
     setSource({
-      everything: `https://newsapi.org/v2/everything?q=${search}&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
-      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
+      everything: `https://newsapi.org/v2/everything?q=${search}&apiKey=6ca394a356504188a8aea3a7cdb28ee5`,
+      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=6ca394a356504188a8aea3a7cdb28ee5`,
     });
     setPage(1)
     document.getElementById("id").scrollIntoView(true);
@@ -73,8 +74,8 @@ function News(props) {
       setSource({
         everything: `https://newsapi.org/v2/everything?q=${
           source.everything.slice(36, 41) !== "india" ? search : "india"
-        }&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=${page - 1}`,
-        top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
+        }&apiKey=6ca394a356504188a8aea3a7cdb28ee5&page=${page - 1}`,
+        top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=6ca394a356504188a8aea3a7cdb28ee5`,
       });
     
     }
@@ -85,8 +86,8 @@ function News(props) {
     setSource({
       everything: `https://newsapi.org/v2/everything?q=${
         source.everything.slice(36, 41) !== "india" ? search : "india"
-      }&apiKey=f24acf7a501b4ccdafcb7677f925e7fa&page=${page + 1}`,
-      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=f24acf7a501b4ccdafcb7677f925e7fa`,
+      }&apiKey=6ca394a356504188a8aea3a7cdb28ee5&page=${page + 1}`,
+      top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=6ca394a356504188a8aea3a7cdb28ee5`,
     });
     setPage(page + 1);
     console.log(source)
@@ -104,7 +105,7 @@ function News(props) {
 
   return (
     <div
-      className="container-fluid "
+      className="container-fluid" style={{paddingTop:"12vh"}}
     >
    
   { <div
@@ -163,7 +164,7 @@ function News(props) {
 
       <div className="d-flex ">
         <p
-          className={`mx-2 my-2  h-50 align-self-center me-auto text-${
+          className={`mx-2 my-2  h-50 min-vw-25 align-self-center me-auto text-${
             props.mode === "dark" ? "light" : "dark"
           }`}
         >
@@ -171,14 +172,14 @@ function News(props) {
         </p>
 
         <p
-          className={`mx-2 my-2  flex-shrink-1 h-50 align-self-center text-center text-${
+          className={`mx-2 my-2 min-vw-25 h-50 align-self-center text-center text-${
             props.mode === "dark" ? "light" : "dark"
           }  `}
         >
           Results:
         </p>
         <select
-          className={`btn mx-2 my-2  flex-shrink-1 h-50 align-self-center text-center rounded-4 border border-secondary btn-outline-danger text-light" aria-label="Default select example`}
+          className={`btn mx-2 my-2 h-50 align-self-center text-center rounded-4 border border-secondary btn-outline-danger text-light" aria-label="Default select example`}
           onChange={changeRes}
           style={{ width: "10%", appearance: "none" }}
         >
@@ -236,7 +237,7 @@ function News(props) {
             .map((element) => {
               if (art.indexOf(element) <= results.number - 1) {
                 return (
-                  <div className="col-md-2 row-md-3 col-sm-4 col-xs-6 my-2 d-flex justify-content-center" id="id"> 
+                  <div className="col-md-2 row-md-3 col-sm-4 col-xs-6 my-2 d-flex justify-content-center" id="id" > 
                     <NewsItem
                       title={element.title}
                       description={element.description}
@@ -253,27 +254,27 @@ function News(props) {
 
           {/* previous and next buttons */}
           
-            {loading && <div className="d-flex justify-content-center m-4 align-self-end">
+            {loading && <div className="d-flex justify-content-center m-4 align-self-end py-3">
               <button
                 type="button"
-                class={`btn btn-${
+                className={`btn btn-${
                   props.mode === "dark" ? "outline-info" : "primary"
                 } h-75 w-25`}
                 onClick={page === 1 ? null : previous}
               >
                 <strong>&laquo; Previous</strong>
               </button>
-              <h2
+              <p
                 className={`text-${
                   props.mode === "dark" ? "light" : "dark"
-                } mx-4`}
+                } mx-4 my-2`}
               >
                 {" "}
                 Page: {page}{" "}
-              </h2>
+              </p>
               <button
                 type="button"
-                class={`btn btn-${
+                className={`btn btn-${
                   props.mode === "dark" ? "outline-info" : "primary"
                 } h-75 w-25`}
                 onClick={next}
