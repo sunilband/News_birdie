@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function About(props) {
   return (
-    <div className='container'>
+    <div className='container' style={{paddingTop:"12vh"}}>
 
 <div className="accordion m-4 h-100" id="accordionExample" data-bs-theme={props.mode}>
   <div className="accordion-item">
