@@ -24,7 +24,8 @@ function Navbar(props) {
 
   
     <li className="nav-item mx-2">
-      <Link to="/about" className={`nav-link active text-${props.mode==="dark"?"light":"light"}`}  onClick={props.flagAbout}>About</Link>
+      <a href="https://sunilband.netlify.app/" className={`nav-link active text-${props.mode==="dark"?"light":"light"}`} target="_blank" rel="noreferrer">About</a>
+      {/* <Link to="/about" className={`nav-link active text-${props.mode==="dark"?"light":"light"}`}  onClick={props.flagAbout}>About</Link> */}
     </li>
 
     

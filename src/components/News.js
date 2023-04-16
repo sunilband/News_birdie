@@ -22,14 +22,18 @@ function News(props) {
     everything: `https://newsapi.org/v2/everything?q=india&apiKey=6ca394a356504188a8aea3a7cdb28ee5&page=${page}`,
     top: `https://newsapi.org/v2/top-headlines?country=in&apiKey=6ca394a356504188a8aea3a7cdb28ee5&page=1`,
   });
-  const [results, setResults] = useState({ number: "12" });
+  const [results, setResults] = useState({ number: "100" });
 
 
 
   useEffect(() => {
    
-    const getArticlesEverything = async () => {
-      const resEverything = await Axios.get(source.everything);
+    const getArticlesEverything = async() => {
+      
+      // const resEverything = await Axios.get(source.everything);
+      
+      // const resEverything = await Axios.post('http://localhost:8000/',{"url":source});
+      const resEverything = await Axios.get("https://newsbirdieapi.vercel.app/everything/"+encodeURIComponent(source.everything))
       setArt(resEverything.data.articles);
       console.log(resEverything)
       setLoading(true)  
@@ -42,7 +46,7 @@ function News(props) {
   useEffect(() => {
     
     const getArticlesTop = async () => {
-      const resTop = await Axios.get(source.top);
+      const resTop = await Axios.get("https://newsbirdieapi.vercel.app/top/"+encodeURIComponent(source.top))
       setArtTop(resTop.data.articles);
       
     };setLoading(true)
